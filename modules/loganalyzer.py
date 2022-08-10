@@ -57,98 +57,98 @@ def process_file(fname):
     formated = text_string_to_metric_families(fname)
     metrics = list(formated)
 
-    models = OrderedDict()
+    results = OrderedDict()
 
     for metric in metrics:
         #print("metric name ", metric.name)
 
-        # collect all the models first
+        # collect all the results first
         if "nv_inference_request_success" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]] = TritonModel(samp.labels["model"])
+                results[samp.labels["model"]] = TritonModel(samp.labels["model"])
 
         # collect all the infer counts
         if "nv_inference_request_success" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].nreq = samp.value
+                results[samp.labels["model"]].nreq = samp.value
 
         if "nv_inference_count" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].ninfer = samp.value
+                results[samp.labels["model"]].ninfer = samp.value
 
         if "nv_inference_exec_count" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].nexec = samp.value
+                results[samp.labels["model"]].nexec = samp.value
 
         # collect all latency information
         # unit in ms (1e-3 second)
         if "nv_inference_request_duration_us" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].treq = samp.value / 1.0e3
+                results[samp.labels["model"]].treq = samp.value / 1.0e3
 
         if "nv_inference_queue_duration_us" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].tqueue = samp.value / 1.0e3
+                results[samp.labels["model"]].tqueue = samp.value / 1.0e3
 
         if "nv_inference_compute_input_duration_us" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].tinput = samp.value / 1.0e3
+                results[samp.labels["model"]].tinput = samp.value / 1.0e3
 
         if "nv_inference_compute_infer_duration_us" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].tinfer = samp.value / 1.0e3
+                results[samp.labels["model"]].tinfer = samp.value / 1.0e3
 
         if "nv_inference_compute_output_duration_us" in metric.name:
             for samp in metric.samples:
-                models[samp.labels["model"]].toutput = samp.value / 1.0e3
+                results[samp.labels["model"]].toutput = samp.value / 1.0e3
 
-    return models
+    return results
 
 
-def print_info(models1, models2 = None):
-    if models2:
-        # if models2 exist, take the difference
-        assert models1.keys() == models2.keys(), "the 2 log files should have the same models"
-        for modelname in models1.keys():
-            models1[modelname] = models1[modelname] - models2[modelname]
-    models = models1
+def print_info(results1, results2 = None):
+    if results2:
+        # if results2 exist, take the difference
+        assert results1.keys() == results2.keys(), "the 2 log files should have the same results"
+        for modelname in results1.keys():
+            results1[modelname] = results1[modelname] - results2[modelname]
+    results = results1
 
     print("******\nDumped results\n******")
 
-    # list all models
-    print("all served models: ")
-    for modelname in models.keys():
+    # list all results
+    print("all served results: ")
+    for modelname in results.keys():
         print("model ", modelname)
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, total inference requests {:.0f}".format(model.name, abs(model.nreq)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, total inference counts {:.0f}".format(model.name, abs(model.ninfer)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, total execution requests {:.0f}".format(model.name, abs(model.nexec)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, total request time {:.2f}".format(model.name, model.treq / (model.ninfer + 1e-6)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, total queue time {:.2f}".format(model.name, model.tqueue / (model.ninfer + 1e-6)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, computing input time {:.2f}".format(model.name, model.tinput / (model.ninfer + 1e-6)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, infer time {:.2f}".format(model.name, model.tinfer / (model.ninfer + 1e-6)))
     print()
 
-    for modelname, model in models.items():
+    for modelname, model in results.items():
         print("model name {:15s}, computing output time {:.2f}".format(model.name, model.toutput / (model.ninfer + 1e-6)))
     print()
