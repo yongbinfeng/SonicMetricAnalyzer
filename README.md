@@ -21,4 +21,6 @@ python3 test.py
 ```
 in which if two parameters are passed to `print_info`, it will take the difference and print out the information. Otherwise if one log file is passed it will process and print out the information saved in the that log file.
 
+More explanations on the physical meanings of these metrics can be found in the [Triton document](https://github.com/triton-inference-server/server/blob/main/docs/metrics.md)
+
 A large amount of code here is taken directly from [prometheus-client](https://github.com/prometheus/client_python).
