@@ -1,0 +1,131 @@
+# HELP nv_inference_request_success Number of successful inference requests, all batch sizes
+# TYPE nv_inference_request_success counter
+nv_inference_request_success{model="exatrkx",version="1"} 0.000000
+nv_inference_request_success{model="gnn",version="1"} 1.000000
+nv_inference_request_success{model="embed",version="1"} 1.000000
+nv_inference_request_success{model="applyfilter",version="1"} 0.000000
+nv_inference_request_success{model="filter",version="1"} 1.000000
+nv_inference_request_success{model="wcc",version="1"} 0.000000
+nv_inference_request_success{model="frnn",version="1"} 0.000000
+# HELP nv_inference_request_failure Number of failed inference requests, all batch sizes
+# TYPE nv_inference_request_failure counter
+nv_inference_request_failure{model="exatrkx",version="1"} 0.000000
+nv_inference_request_failure{model="gnn",version="1"} 0.000000
+nv_inference_request_failure{model="embed",version="1"} 0.000000
+nv_inference_request_failure{model="applyfilter",version="1"} 0.000000
+nv_inference_request_failure{model="filter",version="1"} 0.000000
+nv_inference_request_failure{model="wcc",version="1"} 0.000000
+nv_inference_request_failure{model="frnn",version="1"} 0.000000
+# HELP nv_inference_count Number of inferences performed (does not include cached requests)
+# TYPE nv_inference_count counter
+nv_inference_count{model="exatrkx",version="1"} 0.000000
+nv_inference_count{model="gnn",version="1"} 1.000000
+nv_inference_count{model="embed",version="1"} 1.000000
+nv_inference_count{model="applyfilter",version="1"} 0.000000
+nv_inference_count{model="filter",version="1"} 1.000000
+nv_inference_count{model="wcc",version="1"} 0.000000
+nv_inference_count{model="frnn",version="1"} 0.000000
+# HELP nv_inference_exec_count Number of model executions performed (does not include cached requests)
+# TYPE nv_inference_exec_count counter
+nv_inference_exec_count{model="exatrkx",version="1"} 0.000000
+nv_inference_exec_count{model="gnn",version="1"} 1.000000
+nv_inference_exec_count{model="embed",version="1"} 1.000000
+nv_inference_exec_count{model="applyfilter",version="1"} 0.000000
+nv_inference_exec_count{model="filter",version="1"} 1.000000
+nv_inference_exec_count{model="wcc",version="1"} 0.000000
+nv_inference_exec_count{model="frnn",version="1"} 0.000000
+# HELP nv_inference_request_duration_us Cumulative inference request duration in microseconds (includes cached requests)
+# TYPE nv_inference_request_duration_us counter
+nv_inference_request_duration_us{model="exatrkx",version="1"} 0.000000
+nv_inference_request_duration_us{model="gnn",version="1"} 47836.000000
+nv_inference_request_duration_us{model="embed",version="1"} 986855.000000
+nv_inference_request_duration_us{model="applyfilter",version="1"} 0.000000
+nv_inference_request_duration_us{model="filter",version="1"} 37803.000000
+nv_inference_request_duration_us{model="wcc",version="1"} 0.000000
+nv_inference_request_duration_us{model="frnn",version="1"} 0.000000
+# HELP nv_inference_queue_duration_us Cumulative inference queuing duration in microseconds (includes cached requests)
+# TYPE nv_inference_queue_duration_us counter
+nv_inference_queue_duration_us{model="exatrkx",version="1"} 0.000000
+nv_inference_queue_duration_us{model="gnn",version="1"} 216.000000
+nv_inference_queue_duration_us{model="embed",version="1"} 239.000000
+nv_inference_queue_duration_us{model="applyfilter",version="1"} 0.000000
+nv_inference_queue_duration_us{model="filter",version="1"} 197.000000
+nv_inference_queue_duration_us{model="wcc",version="1"} 0.000000
+nv_inference_queue_duration_us{model="frnn",version="1"} 0.000000
+# HELP nv_inference_compute_input_duration_us Cumulative compute input duration in microseconds (does not include cached requests)
+# TYPE nv_inference_compute_input_duration_us counter
+nv_inference_compute_input_duration_us{model="exatrkx",version="1"} 0.000000
+nv_inference_compute_input_duration_us{model="gnn",version="1"} 225.000000
+nv_inference_compute_input_duration_us{model="embed",version="1"} 598.000000
+nv_inference_compute_input_duration_us{model="applyfilter",version="1"} 0.000000
+nv_inference_compute_input_duration_us{model="filter",version="1"} 341.000000
+nv_inference_compute_input_duration_us{model="wcc",version="1"} 0.000000
+nv_inference_compute_input_duration_us{model="frnn",version="1"} 0.000000
+# HELP nv_inference_compute_infer_duration_us Cumulative compute inference duration in microseconds (does not include cached requests)
+# TYPE nv_inference_compute_infer_duration_us counter
+nv_inference_compute_infer_duration_us{model="exatrkx",version="1"} 0.000000
+nv_inference_compute_infer_duration_us{model="gnn",version="1"} 47253.000000
+nv_inference_compute_infer_duration_us{model="embed",version="1"} 985752.000000
+nv_inference_compute_infer_duration_us{model="applyfilter",version="1"} 0.000000
+nv_inference_compute_infer_duration_us{model="filter",version="1"} 35282.000000
+nv_inference_compute_infer_duration_us{model="wcc",version="1"} 0.000000
+nv_inference_compute_infer_duration_us{model="frnn",version="1"} 0.000000
+# HELP nv_inference_compute_output_duration_us Cumulative inference compute output duration in microseconds (does not include cached requests)
+# TYPE nv_inference_compute_output_duration_us counter
+nv_inference_compute_output_duration_us{model="exatrkx",version="1"} 0.000000
+nv_inference_compute_output_duration_us{model="gnn",version="1"} 11.000000
+nv_inference_compute_output_duration_us{model="embed",version="1"} 24.000000
+nv_inference_compute_output_duration_us{model="applyfilter",version="1"} 0.000000
+nv_inference_compute_output_duration_us{model="filter",version="1"} 1734.000000
+nv_inference_compute_output_duration_us{model="wcc",version="1"} 0.000000
+nv_inference_compute_output_duration_us{model="frnn",version="1"} 0.000000
+# HELP nv_cache_num_entries Number of responses stored in response cache
+# TYPE nv_cache_num_entries gauge
+# HELP nv_cache_num_lookups Number of cache lookups in response cache
+# TYPE nv_cache_num_lookups gauge
+# HELP nv_cache_num_hits Number of cache hits in response cache
+# TYPE nv_cache_num_hits gauge
+# HELP nv_cache_num_misses Number of cache misses in response cache
+# TYPE nv_cache_num_misses gauge
+# HELP nv_cache_num_evictions Number of cache evictions in response cache
+# TYPE nv_cache_num_evictions gauge
+# HELP nv_cache_lookup_duration Total cache lookup duration (hit and miss), in microseconds
+# TYPE nv_cache_lookup_duration gauge
+# HELP nv_cache_util Cache utilization [0.0 - 1.0]
+# TYPE nv_cache_util gauge
+# HELP nv_cache_num_hits_per_model Number of cache hits per model
+# TYPE nv_cache_num_hits_per_model counter
+nv_cache_num_hits_per_model{model="exatrkx",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="gnn",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="embed",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="applyfilter",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="filter",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="wcc",version="1"} 0.000000
+nv_cache_num_hits_per_model{model="frnn",version="1"} 0.000000
+# HELP nv_cache_hit_lookup_duration_per_model Total cache hit lookup duration per model, in microseconds
+# TYPE nv_cache_hit_lookup_duration_per_model counter
+nv_cache_hit_lookup_duration_per_model{model="exatrkx",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="gnn",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="embed",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="applyfilter",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="filter",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="wcc",version="1"} 0.000000
+nv_cache_hit_lookup_duration_per_model{model="frnn",version="1"} 0.000000
+# HELP nv_gpu_utilization GPU utilization rate [0.0 - 1.0)
+# TYPE nv_gpu_utilization gauge
+nv_gpu_utilization{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 0.000000
+# HELP nv_gpu_memory_total_bytes GPU total memory, in bytes
+# TYPE nv_gpu_memory_total_bytes gauge
+nv_gpu_memory_total_bytes{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 15842934784.000000
+# HELP nv_gpu_memory_used_bytes GPU used memory, in bytes
+# TYPE nv_gpu_memory_used_bytes gauge
+nv_gpu_memory_used_bytes{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 1497366528.000000
+# HELP nv_gpu_power_usage GPU power usage in watts
+# TYPE nv_gpu_power_usage gauge
+nv_gpu_power_usage{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 27.444000
+# HELP nv_gpu_power_limit GPU power management limit in watts
+# TYPE nv_gpu_power_limit gauge
+nv_gpu_power_limit{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 70.000000
+# HELP nv_energy_consumption GPU energy consumption in joules since the Triton Server started
+# TYPE nv_energy_consumption counter
+nv_energy_consumption{gpu_uuid="GPU-8331ed5e-e44e-72c7-fba5-ed5d48487989"} 10918.654000
