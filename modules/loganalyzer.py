@@ -13,6 +13,7 @@ class TritonModel:
                  name: str,
                  nreq: int = 0, ninfer: int = 0, nexec: int = 0,
                  treq: float = 0, tqueue: float = 0, tinput: float = 0, tinfer: float = 0, toutput: float = 0,
+                 nevt: int = 0,
                  ):
         self.name = name
 
@@ -26,6 +27,8 @@ class TritonModel:
         self.tinfer = tinfer
         self.toutput = toutput
 
+        self.nevt = nevt
+
     def __add__(self, obj2):
         objn = TritonModel(self.name)
         objn.nreq    = self.nreq    + obj2.nreq
@@ -36,6 +39,7 @@ class TritonModel:
         objn.tinput  = self.tinput  + obj2.tinput
         objn.tinfer  = self.tinfer  + obj2.tinfer
         objn.toutput = self.toutput + obj2.toutput
+        objn.nevt    = self.nevt    + obj2.nevt
         return objn
 
     def __sub__(self, obj2):
@@ -48,10 +52,11 @@ class TritonModel:
         objn.tinput  = self.tinput  - obj2.tinput
         objn.tinfer  = self.tinfer  - obj2.tinfer
         objn.toutput = self.toutput - obj2.toutput
+        objn.nevt    = self.nevt    - obj2.nevt
         return objn
 
         
-def process_file(fname):
+def process_file(fname, nevt = 0):
     assert os.path.isfile(fname), f"file {fname} does not exist."
 
     formated = text_string_to_metric_families(fname)
@@ -79,6 +84,10 @@ def process_file(fname):
         if "nv_inference_exec_count" in metric.name:
             for samp in metric.samples:
                 results[samp.labels["model"]].nexec = samp.value
+
+        if nevt > 0:
+            for samp in metric.samples:
+                results[samp.labels["model"]].nevt = nevt
 
         # collect all latency information
         # unit in ms (1e-3 second)
@@ -134,21 +143,37 @@ def print_info(results1, results2 = None):
     print()
 
     for modelname, model in results.items():
-        print("model name {:15s}, total request time {:.2f}".format(model.name, model.treq / (model.ninfer + 1e-6)))
+        # units in ms (1e-3 s)
+        tavg = model.treq / (model.ninfer + 1e-6) 
+        if model.nevt > 0:
+            tavg = model.treq / (model.nevt + 1e-6)
+        print("model name {:15s}, total request time {:.2f}".format(model.name, tavg))
     print()
 
     for modelname, model in results.items():
-        print("model name {:15s}, total queue time {:.2f}".format(model.name, model.tqueue / (model.ninfer + 1e-6)))
+        tavg = model.tqueue / (model.ninfer + 1e-6)
+        if model.nevt > 0:
+            tavg = model.tqueue / (model.nevt + 1e-6)
+        print("model name {:15s}, total queue time {:.2f}".format(model.name, tavg))
     print()
 
     for modelname, model in results.items():
-        print("model name {:15s}, computing input time {:.2f}".format(model.name, model.tinput / (model.ninfer + 1e-6)))
+        tavg = model.tinput / (model.ninfer + 1e-6)
+        if model.nevt > 0:
+            tavg = model.tinput / (model.nevt + 1e-6)
+        print("model name {:15s}, computing input time {:.2f}".format(model.name, tavg))
     print()
 
     for modelname, model in results.items():
-        print("model name {:15s}, infer time {:.2f}".format(model.name, model.tinfer / (model.ninfer + 1e-6)))
+        tavg = model.tinfer / (model.ninfer + 1e-6)
+        if model.nevt > 0:
+            tavg = model.tinfer / (model.nevt + 1e-6)
+        print("model name {:15s}, infer time {:.2f}".format(model.name, tavg))
     print()
 
     for modelname, model in results.items():
-        print("model name {:15s}, computing output time {:.2f}".format(model.name, model.toutput / (model.ninfer + 1e-6)))
+        tavg = model.toutput / (model.ninfer + 1e-6)
+        if model.nevt > 0:
+            tavg = model.toutput / (model.nevt + 1e-6)
+        print("model name {:15s}, computing output time {:.2f}".format(model.name, tavg))
     print()
